@@ -6,7 +6,7 @@ import App from './App';
 describe('App component', () => {
 
   it('should have the right message in the dom', () => {
-      const message = 'Hello Worlds';
+      const message = 'Hello World';
       
       render(<App />);
     expect(screen.getByText(message)).toBeInTheDocument()

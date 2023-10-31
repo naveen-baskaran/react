@@ -15,5 +15,19 @@ jobs:
     - name: Run Tests
       run: |
         npm install 
-        npm run test --coverage
-        
+        npm run test --coverage >> description.html
+
+    - name: Read HTML file
+      run: |
+        HTML_CONTENT=$(cat description.html)
+        echo "::set-output name=html_content::$HTML_CONTENT"
+
+    - name: Update PR Description
+      env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: |
+        PR_NUMBER="${{ github.event.pull_request.number }}"
+        NEW_DESCRIPTION="${{ steps.read-html.outputs.html_content }}"
+        URL="https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}"
+        JSON_PAYLOAD=$(echo "{\"body\": \"$NEW_DESCRIPTION\"}")
+        curl -X PATCH -H "Authorization: token $GH_TOKEN" -H "Content-Type: application/json" -d "$JSON_PAYLOAD" "$URL"
