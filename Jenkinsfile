@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    environment {
-        // Define environment variables if needed
-    }
+    // environment {
+    //     // Define environment variables if needed
+    // }
 
     stages {
         stage('Checkout') {
@@ -29,16 +29,16 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            script {
-                // Add additional steps to run on successful tests
-            }
-        }
-        failure {
-            script {
-                // Add additional steps to run on test failures
-            }
-        }
-    }
+    // post {
+    //     success {
+    //         script {
+    //             // Add additional steps to run on successful tests
+    //         }
+    //     }
+    //     failure {
+    //         script {
+    //             // Add additional steps to run on test failures
+    //         }
+    //     }
+    // }
 }
