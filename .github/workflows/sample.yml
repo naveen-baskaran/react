@@ -1,6 +1,6 @@
 on: 
   pull_request:
-      branches: [prestaging]
+      branches: [main]
   issue_comment: [created]
 jobs:
   pr_commented:
