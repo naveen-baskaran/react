@@ -1,4 +1,7 @@
-on: issue_comment
+on: 
+  pull_request:
+      branches: [prestaging]
+  issue_comment: [created]
 jobs:
   pr_commented:
     # This job only runs for pull request comments
